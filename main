@@ -1,0 +1,108 @@
+#!/bin/bash
+if [ -f /usr/bin/curl ] || [ -f /data/data/com.termux/files/usr/bin/curl ] && [ -f /usr/bin/nslookup ] || [ -f /data/data/com.termux/files/usr/bin/nslookup ];then
+   function ip(){
+       printf "IP:"
+       read ip
+       resp=$(curl ipinfo.io/$ip)
+       printf "$resp \n"
+       printf "Do you want to save the results in a file? \n"
+       printf "[1]yes [2]no:"
+       read option
+       if [ $option -eq 1 ];then
+          printf "Directory of filename:"
+          read file
+          echo $resp >> $file
+          exit1
+       elif [ $option -eq 2 ];then
+          exit1
+       else
+          clear
+          printf "Please try again \n"
+          ip
+       fi
+   }  
+   function mine(){
+      find=$(curl ifconfig.me)
+      resp=$(curl ipinfo.io/$find)
+      printf "$resp \n"
+      printf "Do you want to save the results in a file? \n"
+      printf "[1]yes [2]no:"
+      read option
+      if [ $option -eq 1 ];then
+        printf "Directory or filename:"
+        read file
+        echo $resp >> $file
+        exit1
+      elif [ $option -eq 2 ];then
+        exit1
+      else
+        clear
+        printf "Please try again \n"
+        mine
+      fi 
+   }
+     
+   function website(){
+      printf "URL:"
+      read url
+      resp=$(nslookup $url)
+      printf "$resp \n"
+      printf "Do you want to save the results in a file? \n"
+      printf "[1]yes [2]no:"
+      read option
+      if [ $option -eq 1 ];then
+         printf "Directory or filename:"
+         read file
+         echo $resp >> $file
+         exit1
+      elif [ $option -eq 2 ];then
+         exit1
+      else
+         clear
+         printf "Please try again \n"
+         website
+      fi
+   }
+   function exit1(){
+      printf "Do you want to exit the program? [1]yes [2]no:"
+      read option2
+      if [ $option2 -eq 1 ];then
+         clear
+         exit2
+      else
+         clear
+         main
+      fi
+   }  
+      
+   function exit2(){
+      clear
+      figlet GoodBye | lolcat
+   }
+
+   function main(){
+      clear
+      figlet Info-IP | lolcat
+      printf "|-------------------------------------------------| \n" | lolcat
+      printf "|                Coded by: G3K45                  | \n" | lolcat
+      printf "|-------------------------------------------------| \n" | lolcat
+      printf "[1]My IP \n"
+      printf "[2]IP \n"
+      printf "[3]Website IP \n"
+      printf "[4]Exit \n"
+      printf "PLease select>>>"
+      read option3
+      if [ $option3 -eq 1 ];then
+         mine
+      elif [ $option3 -eq 2 ];then
+         ip
+      elif [ $option3 -eq 3 ];then
+         website
+      elif [ $option3 -eq 4 ];then
+         exit2
+      else
+         main
+      fi
+   }
+   main
+fi
