@@ -1,4 +1,4 @@
-Info-IP is a bash script that helps you to find informations about any Public IP Address you want to.
+Info-IP is a bash script that helps you to find informations about any Public IP Address you want to \n.
 Info-IP can be used in both Termux and Linux
 Installation:
 Debian/Ubuntu:
