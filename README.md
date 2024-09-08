@@ -12,7 +12,6 @@ chmox +x main
 ./main
 ```
 #Arch Linux
-Arch Linux
 ```bash
 sudo pacman -S git figlet lolcat dnsutils curl
 git clone https://github.com/G3K45/Info-IP.git
@@ -21,8 +20,7 @@ chmod +x main
 ./main
 ```
 
-#Termux
-Termux 
+#Termux 
 ```bash
 apt install python3 python-pip git dnsutils curl
 pip3 install lolcat
